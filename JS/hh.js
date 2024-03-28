@@ -195,101 +195,218 @@ object.setValue(42);
 object._value = 73; // изменили напрямую приватное свойство
 object.getValue(); // 42
 */
-function canGetCount(n) {
-  let count = n
-  return function() {
-    if (count > 0) {
-      console.log('yes') 
-    } else {
-      console.log('no')
-    }
-    count--
-  }
-}
+// function canGetCount(n) {
+//   let count = n
+//   return function() {
+//     if (count > 0) {
+//       console.log('yes') 
+//     } else {
+//       console.log('no')
+//     }
+//     count--
+//   }
+// }
 
-const getOne = canGetCount(2);
+// const getOne = canGetCount(2);
 
-getOne()  // yes
-getOne()  // yes
-getOne()  // no
+// getOne()  // yes
+// getOne()  // yes
+// getOne()  // no
 
-const object2 = {
-  value: '42',
-  print () {
-    type = () => {
-      return typeof this.value;
-    }
+// const object2 = {
+//   value: '42',
+//   print () {
+//     type = () => {
+//       return typeof this.value;
+//     }
     
-    console.log(`${this.value} is ${type()}`);
-  }
+//     console.log(`${this.value} is ${type()}`);
+//   }
+// }
+
+// object2.print(); // Поправьте замыкание
+
+// const obj = { x: 15 };
+
+// function first() {
+//    return this.x; // 15
+// }
+
+// function second() {
+// 		return first.call(obj); // Вернёт undefined, а нужно 15
+// }
+
+// console.log(second())
+
+
+
+// function plus(n) {
+//   return this.valueOf() + n
+// }
+
+// function minus(n) {
+//   return this.valueOf() - n 
+// }
+
+// Object.assign(Number.prototype, {plus, minus})
+
+// console.log((20).plus(3).minus(1)) // 4
+
+// function Book() {
+//   this.name = 'foo';
+// }
+
+// Book.prototype = {
+//   getName: function() {
+//       return this.name;
+//   },
+//   getUpperName() {
+//     return this.name.toUpperCase()
+//   }
+// }
+
+// var book = new Book();
+
+// // В этой строке определить метод getUpperName
+
+// console.log(book.getUpperName()); // 'FOO'
+
+// function makeChatsList(chats) {
+//   const ul = document.createElement('ul')
+//   chats.forEach(chat => {
+//     const li = document.createElement('li')
+//     li.textContent = chat.title + chat.lastMessage
+//     ul.append(li)
+//   })
+//   return ul
+// }
+
+// const chats = [
+//   {
+//     title: 'hui', 
+//     lastMessage: 'hui2'
+//   }, 
+//   {
+//     title: 'hui3', 
+//     lastMessage: 'hui4'
+//   }
+// ]
+
+// console.log(makeChatsList(chats))
+
+// 'use strict';
+
+// const badResult = () => {
+// 	for (var i = 0; i < 10; i++) {
+// 	    setTimeout(function() {
+// 	        console.log(i);
+// 	    }, 10);
+// 	}
+// };
+
+// const iifeSolution = () => {
+// 	for (var i = 0; i < 10; i++) {
+// 	    (function(i){
+//         setTimeout(function() {
+// 	        console.log(i);
+// 	    }, 10)
+//     })(i);
+// 	}
+// };
+
+// function es6Solution() {
+//   for (let i = 0; i < 10; i++) {
+//     setTimeout(function() {
+//         console.log(i);
+//     }, 10);
+// }
+// }
+
+// const arr = [1,2,3,4,5,6,7,8,9,0,99]
+
+// const bindSolution = function () {
+//   for (var i = 0; i < 10; i++) {
+//     setTimeout(function() {
+//         console.log(arr[this.i]);
+//     }.bind({i}), 10)
+//   }
+// };
+
+// iifeSolution()
+// es6Solution()
+// bindSolution()
+
+// function foo(callback) {
+//   setTimeout(function() {
+//       callback('A');
+//   }, Math.random()*100);
+// }
+
+// function bar(callback) {
+//   setTimeout(function() {
+//       callback('B');
+//   }, Math.random()*100);
+// }
+
+// function baz(callback) {
+//   setTimeout(function() {
+//       callback('C');
+//   }, Math.random()*100);
+// }
+
+
+// function Promisificate(func) {
+//   return new Promise((resolve, reject) => {
+//     func(resolve)
+//   })
+// }
+
+// (async function(){
+//   console.log(await Promisificate(foo))
+//   console.log(await Promisificate(bar))
+//   console.log(await Promisificate(baz))
+// })()
+
+
+// function test2(text) {
+//   console.log(text)
+//   baz(console.log)
+// }
+
+// function test(text) {
+//   console.log(text)
+//   bar(test2)
+// }
+
+// foo(test)
+
+// const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+
+// const promises = [
+//     delay(65).then(() => 10),
+//     delay(100).then(() => { throw 'my error'; })
+// ];
+
+// async function allSettled(promises) {
+//   const newPromises = []
+//   const output = []
+//   promises.forEach(promise => {
+//     const newPromise = promise.then((data)=>{
+//       output.push({status: 'resolved', value: data})
+//     })
+//     .catch((e)=>{
+//       output.push({status:'rejected', reason: e})
+//     })
+//     newPromises.push(newPromise)
+//   });
+//   await Promise.all(newPromises)
+//   return output
+// }
+// (async function() {
+//   console.log(await allSettled(promises))
+// })()
+
+
+Promise.prototype.finally = function (fn) {
+
 }
-
-object2.print(); // Поправьте замыкание
-
-const obj = { x: 15 };
-
-function first() {
-   return this.x; // 15
-}
-
-function second() {
-		return first.call(obj); // Вернёт undefined, а нужно 15
-}
-
-console.log(second())
-
-
-
-function plus(n) {
-  return this.valueOf() + n
-}
-
-function minus(n) {
-  return this.valueOf() - n 
-}
-
-Object.assign(Number.prototype, {plus, minus})
-
-console.log((20).plus(3).minus(1)) // 4
-
-function Book() {
-  this.name = 'foo';
-}
-
-Book.prototype = {
-  getName: function() {
-      return this.name;
-  },
-  getUpperName() {
-    return this.name.toUpperCase()
-  }
-}
-
-var book = new Book();
-
-// В этой строке определить метод getUpperName
-
-console.log(book.getUpperName()); // 'FOO'
-
-function makeChatsList(chats) {
-  const ul = document.createElement('ul')
-  chats.forEach(chat => {
-    const li = document.createElement('li')
-    li.textContent = chat.title + chat.lastMessage
-    ul.append(li)
-  })
-  return ul
-}
-
-const chats = [
-  {
-    title: 'hui', 
-    lastMessage: 'hui2'
-  }, 
-  {
-    title: 'hui3', 
-    lastMessage: 'hui4'
-  }
-]
-
-console.log(makeChatsList(chats))
