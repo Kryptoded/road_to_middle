@@ -407,6 +407,67 @@ object.getValue(); // 42
 // })()
 
 
-Promise.prototype.finally = function (fn) {
 
+// Promise.prototype.finally = function (fn) {
+//   const pr = new Promise((res, rej) => {
+//     res(fn())
+//   })
+//   return pr.then(()=>this.then(value => value))
+// }
+
+// const resolvedPromise = Promise.resolve('hui').finally(()=>Promise.resolve('huieee')).then((data)=>{console.log(data)})
+// const rejectedPromise = Promise.reject('noHUI').finally(()=>{
+//   throw 'jhoj'
+// }).catch((e) => {console.log(e)})
+
+function memoize(callback) {
+  const cache = {}
+  function generateKey(args) {
+    return args.map(item => `${typeof item}<${item}>`).join(',')
+  }
+  return function memoizeCallback(...args) {
+    let key = generateKey(args)
+    if (cache[key] === undefined) {
+      return Promise.resolve(callback(...args)).then(data => {
+       cache[key] = data;
+        return data
+      })
+    }
+    return Promise.resolve(cache[key])
+  }
 }
+
+function sum(a,b) {
+  return new Promise((resolve, reject) => {
+    setTimeout(()=> {
+      resolve(a+b)
+    }, 3000)
+  })
+}
+
+function noAsyncSum(a,b) {
+  return a + b
+}
+
+const noAsyncMemoSum = memoize(noAsyncSum)
+
+const memoSum = memoize(sum)
+
+noAsyncMemoSum(6,6).then((data) => console.log(data))
+
+memoSum(5,5)
+.then((data)=>{
+  console.log(data)
+  return memoSum(5,5)
+}).then((data)=>{
+  console.log(data)
+  return memoSum(10,10)
+})
+.then((data)=>{
+  console.log(data)
+})
+.catch((e)=>{
+  console.log(e)
+  return memoSum(5,5)
+})
+memoSum(5,5).then((data)=>{console.log(data);})
