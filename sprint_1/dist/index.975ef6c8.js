@@ -585,10 +585,26 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"8lqZg":[function(require,module,exports) {
 var _sum = require("./modules/sum");
+var _templatorUtil = require("./modules/utils/templatorUtil");
 console.log((0, _sum.sum)(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 document.querySelector("#root").textContent = (0, _sum.sum)(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toString();
+const obj = {
+    user: {
+        isPoet: true,
+        info: {
+            firstName: "Alexander",
+            lastName: "Pushkin"
+        }
+    }
+};
+console.log((0, _templatorUtil.get)(obj, "user.info.firstName"));
+console.log((0, _templatorUtil.get)(obj, "user.isPoet"));
+console.log((0, _templatorUtil.get)(obj, "user"));
+console.log((0, _templatorUtil.get)(obj, "user.contacts"));
+console.log((0, _templatorUtil.get)(obj, "user.contacts", "hiu"));
+console.log((0, _templatorUtil.get)(obj));
 
-},{"./modules/sum":"88j4g"}],"88j4g":[function(require,module,exports) {
+},{"./modules/sum":"88j4g","./modules/utils/templatorUtil":"bep5U"}],"88j4g":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "sum", ()=>sum);
@@ -627,6 +643,20 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["farZc","8lqZg"], "8lqZg", "parcelRequirefc40")
+},{}],"bep5U":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "get", ()=>get);
+function get(obj, keys, defaultValue) {
+    const keyArr = keys.split(".");
+    let result = obj;
+    keyArr.forEach((key)=>{
+        result = result[key];
+        if (result === undefined) return defaultValue;
+    });
+    return result ?? defaultValue;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["farZc","8lqZg"], "8lqZg", "parcelRequirefc40")
 
 //# sourceMappingURL=index.975ef6c8.js.map
