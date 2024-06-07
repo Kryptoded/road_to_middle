@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"farZc":[function(require,module,exports) {
+})({"31kFi":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "890e741a975ef6c8";
+module.bundle.HMR_BUNDLE_ID = "ef73d8ed766d3461";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -583,114 +583,16 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"8lqZg":[function(require,module,exports) {
-var _sum = require("./modules/sum");
-var _templatorUtil = require("./modules/utils/templatorUtil");
-var _main = require("./modules/main");
-console.log((0, _sum.sum)(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-document.querySelector("#root").textContent = (0, _sum.sum)(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toString();
-const obj = {
-    user: {
-        isPoet: true,
-        info: {
-            firstName: "Alexander",
-            lastName: "Pushkin"
-        }
-    }
-};
-console.log((0, _templatorUtil.get)(obj, "user.info.firstName"));
-console.log((0, _templatorUtil.get)(obj, "user.isPoet"));
-console.log((0, _templatorUtil.get)(obj, "user"));
-console.log((0, _templatorUtil.get)(obj, "user.contacts"));
-console.log((0, _templatorUtil.get)(obj, "user.contacts", "hiu"));
-console.log((0, _templatorUtil.get)(obj));
+},{}],"hOSWV":[function(require,module,exports) {
+window.blockTemplate = function() {
+    return `
+        <div class='{{ className }}'>
+            <span onClick='{{ handleClick }}'> {{ text }} </span>
+            <span> {{ user.info.firstName }} </span>
+        </div>
+    `;
+}();
 
-},{"./modules/sum":"88j4g","./modules/utils/templatorUtil":"bep5U","./modules/main":"cxmN0"}],"88j4g":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "sum", ()=>sum);
-function sum(...args) {
-    if (!args.length) throw Error("hui sosi pidor");
-    return args.reduce((result, current)=>result += current, 0);
-}
+},{}]},["31kFi","hOSWV"], "hOSWV", "parcelRequirefc40")
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"bep5U":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "get", ()=>get);
-function get(obj, keys, defaultValue) {
-    const keyArr = keys.split(".");
-    let result = obj;
-    keyArr.forEach((key)=>{
-        result = result[key];
-        if (result === undefined) return defaultValue;
-    });
-    return result ?? defaultValue;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cxmN0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _templator = require("./templator");
-var _templatorDefault = parcelHelpers.interopDefault(_templator);
-var _blockTmpl = require("./block.tmpl");
-const context = {
-    text: "\u041C\u043E\u0439 \u043E\u0447\u0435\u043D\u044C \u0432\u0430\u0436\u043D\u044B\u0439 span",
-    className: "chats",
-    user: {
-        info: {
-            firstName: "Alexander"
-        }
-    },
-    handleClick: function() {
-        console.log(document.body);
-    }
-};
-tmpl = new (0, _templatorDefault.default)(window.blockTemplate);
-const renderTemplate = tmpl.compile(context);
-
-},{"./templator":"8B0JL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./block.tmpl":"hOSWV"}],"8B0JL":[function(require,module,exports) {
-class Templator {
-    constructor(template){
-        this._template = template;
-    }
-    compile(ctx) {
-        return this._compileTemplate(ctx);
-    }
-    _compileTemplate(ctx) {
-    // ...
-    }
-}
-
-},{}]},["farZc","8lqZg"], "8lqZg", "parcelRequirefc40")
-
-//# sourceMappingURL=index.975ef6c8.js.map
+//# sourceMappingURL=index.766d3461.js.map
